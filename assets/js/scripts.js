@@ -1,27 +1,28 @@
- // Search overlay
-(function () {
-    const searchButton = document.querySelector('.search-btn');
-          searchClose = document.querySelector('.search__close');
-          searchOverlay = document.querySelector('.search__overlay');
-          searchInput = document.querySelector('[type="search"]');
+// Sticky header position on page scrolling up
+const header = document.querySelector('.js-header');
+const stickyClass = 'sticky';
+let lastScrollTop = 0;
+let isWaiting = false;
 
-    if (searchButton) {
-        searchButton.addEventListener('click', function (e) {
-            searchOverlay.classList.add('expanded');
+window.addEventListener('scroll', () => {
+    if (!isWaiting) {
+        window.requestAnimationFrame(() => {
+            let currentScroll = window.scrollY || window.pageYOffset || document.documentElement.scrollTop;
 
-            if (searchInput) {
-                setTimeout(function() {
-                    if (searchOverlay.classList.contains('expanded')) {
-                        searchInput.focus();
-                    }
-                }, 60);  
-            } 
+            if (currentScroll > lastScrollTop) {
+                header.classList.remove(stickyClass);
+            } else if (currentScroll < lastScrollTop && currentScroll > 0) {
+                header.classList.add(stickyClass);
+            } else if (currentScroll <= 0) {
+                header.classList.remove(stickyClass);
+            }
+
+            lastScrollTop = currentScroll;
+            isWaiting = false;
         });
-        searchClose.addEventListener('click', function (e) {
-            searchOverlay.classList.remove('expanded');
-        });
+        isWaiting = true;
     }
-})();
+}, false);
 
 // Dropdown menu
 (function (menuConfig) {
@@ -63,12 +64,12 @@
 
     var config = {};
 
-    Object.keys(defaultConfig).forEach(function(key) {
+    Object.keys(defaultConfig).forEach(function (key) {
         config[key] = defaultConfig[key];
     });
 
     if (typeof menuConfig === 'object') {
-        Object.keys(menuConfig).forEach(function(key) {
+        Object.keys(menuConfig).forEach(function (key) {
             config[key] = menuConfig[key];
         });
     }
@@ -76,7 +77,7 @@
     /**
      * Menu initializer
      */
-    function init () {
+    function init() {
         if (!document.querySelectorAll(config.wrapperSelector).length) {
             return;
         }
@@ -99,7 +100,7 @@
     /**
      * Function responsible for the submenu positions
      */
-    function initSubmenuPositions () {
+    function initSubmenuPositions() {
         var submenuParents = document.querySelectorAll(config.wrapperSelector + ' .' + config.parentItemClass);
 
         for (var i = 0; i < submenuParents.length; i++) {
@@ -176,7 +177,7 @@
     /**
      * Function used to init mobile menu - overlay mode
      */
-    function initMobileMenuOverlay () {
+    function initMobileMenuOverlay() {
         var menuWrapper = document.createElement('div');
         menuWrapper.classList.add(config.mobileMenuOverlayClass);
         menuWrapper.classList.add(config.hiddenElementClass);
@@ -214,13 +215,13 @@
                     relatedContainer.classList.remove(config.relatedContainerForOverlayMenuClass);
                 }
             }
-        });   
+        });
     }
 
     /**
      * Function used to init mobile menu - sidebar mode
      */
-    function initMobileMenuSidebar () {
+    function initMobileMenuSidebar() {
         // Create menu structure
         var menuWrapper = document.createElement('div');
         menuWrapper.classList.add(config.mobileMenuSidebarClass);
@@ -279,7 +280,7 @@
     /**
      * Set aria-hidden="false" for submenus
      */
-    function setAriaForSubmenus (menuWrapper) {
+    function setAriaForSubmenus(menuWrapper) {
         var submenus = menuWrapper.querySelectorAll(config.submenuSelector);
 
         for (var i = 0; i < submenus.length; i++) {
@@ -290,7 +291,7 @@
     /**
      * Wrap all submenus into div wrappers
      */
-    function wrapSubmenusIntoContainer (menuWrapper) {
+    function wrapSubmenusIntoContainer(menuWrapper) {
         var submenus = menuWrapper.querySelectorAll(config.submenuSelector);
 
         for (var i = 0; i < submenus.length; i++) {
@@ -304,7 +305,7 @@
     /**
      * Initialize submenu toggle events
      */
-    function initToggleSubmenu (menuWrapper) {
+    function initToggleSubmenu(menuWrapper) {
         // Init parent menu item events
         var parents = menuWrapper.querySelectorAll('.' + config.parentItemClass);
 
@@ -316,9 +317,9 @@
                 var content = submenu.firstElementChild;
 
                 if (submenu.classList.contains(config.openedMenuClass)) {
-                    var height = content.clientHeight;   
+                    var height = content.clientHeight;
                     submenu.style.height = height + 'px';
-                    
+
                     setTimeout(function () {
                         submenu.style.height = '0px';
                     }, 0);
@@ -331,10 +332,10 @@
                     content.setAttribute('aria-hidden', true);
                     content.parentNode.firstElementChild.setAttribute('aria-expanded', false);
                 } else {
-                    var height = content.clientHeight;   
+                    var height = content.clientHeight;
                     submenu.classList.add(config.openedMenuClass);
                     submenu.style.height = '0px';
-                    
+
                     setTimeout(function () {
                         submenu.style.height = height + 'px';
                     }, 0);
@@ -376,7 +377,7 @@
     /**
      * Set aria-* attributes according to the current activity state
      */
-    function initAriaAttributes () {
+    function initAriaAttributes() {
         var allAriaElements = document.querySelectorAll(config.wrapperSelector + ' ' + '*[aria-hidden]');
 
         for (var i = 0; i < allAriaElements.length; i++) {
@@ -398,7 +399,7 @@
     /**
      * Close menu on click link
      */
-    function initClosingMenuOnClickLink () {
+    function initClosingMenuOnClickLink() {
         var links = document.querySelectorAll(config.menuSelector + ' a');
 
         for (var i = 0; i < links.length; i++) {
@@ -415,7 +416,7 @@
     /**
      * Close menu
      */
-    function closeMenu (clickedLink, forceClose) {
+    function closeMenu(clickedLink, forceClose) {
         if (forceClose === false) {
             if (clickedLink.parentNode.classList.contains(config.parentItemClass)) {
                 return;
@@ -451,6 +452,32 @@
      */
     init();
 })(window.publiiThemeMenuConfig);
+
+// Load search input area
+const searchButton = document.querySelector('.js-search-btn');
+const searchOverlay = document.querySelector('.js-search-overlay');
+const searchInput = document.querySelector('input[type="search"]');
+
+if (searchButton && searchOverlay && searchInput) {
+    searchButton.addEventListener('click', (event) => {
+        event.stopPropagation();
+        searchOverlay.classList.toggle('expanded');
+
+        if (searchOverlay.classList.contains('expanded')) {
+            setTimeout(() => {
+                searchInput.focus();
+            }, 60);
+        }
+    });
+
+    searchOverlay.addEventListener('click', (event) => {
+        event.stopPropagation();
+    });
+
+    document.body.addEventListener('click', () => {
+        searchOverlay.classList.remove('expanded');
+    });
+}
 
 
 // Share buttons pop-up
@@ -525,42 +552,68 @@
     }
 })();
 
+// Back to top
+document.addEventListener('DOMContentLoaded', () => {
+    const backToTopButton = document.getElementById('backToTop');
+
+    if (backToTopButton) {
+        const backToTopScrollFunction = () => {
+            if (document.body.scrollTop > 400 || document.documentElement.scrollTop > 400) {
+                backToTopButton.classList.add('is-visible');
+            } else {
+                backToTopButton.classList.remove('is-visible');
+            }
+        };
+
+        const backToTopFunction = () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        };
+
+        window.addEventListener('scroll', backToTopScrollFunction);
+        backToTopButton.addEventListener('click', backToTopFunction);
+    }
+});
+
+
 // Responsive embeds script
 (function () {
-	let wrappers = document.querySelectorAll('.post__video, .post__iframe');
+    let wrappers = document.querySelectorAll('.post__video, .post__iframe');
 
-	for (let i = 0; i < wrappers.length; i++) {
-		let embed = wrappers[i].querySelector('iframe, embed, video, object');
+    for (let i = 0; i < wrappers.length; i++) {
+        let embed = wrappers[i].querySelector('iframe, embed, video, object');
 
-		if (!embed) {
-			continue;
-		}
+        if (!embed) {
+            continue;
+        }
 
         if (embed.getAttribute('data-responsive') === 'false') {
             continue;
         }
 
-		let w = embed.getAttribute('width');
-		let h = embed.getAttribute('height');
-		let ratio = false;
+        let w = embed.getAttribute('width');
+        let h = embed.getAttribute('height');
+        let ratio = false;
 
-		if (!w || !h) {
-			continue;
-		}
-		
-		if (w.indexOf('%') > -1 && h.indexOf('%') > -1) { // percentage mode
-			w = parseFloat(w.replace('%', ''));
-			h = parseFloat(h.replace('%', ''));
-			ratio = h / w;
-		} else if (w.indexOf('%') === -1 && h.indexOf('%') === -1) { // pixels mode
-			w = parseInt(w, 10);
-			h = parseInt(h, 10);
-			ratio = h / w;
-		}
+        if (!w || !h) {
+            continue;
+        }
 
-		if (ratio !== false) {
-			let ratioValue = (ratio * 100) + '%';
-			wrappers[i].setAttribute('style', '--embed-aspect-ratio:' + ratioValue);
-		}
-	}
+        if (w.indexOf('%') > -1 && h.indexOf('%') > -1) { // percentage mode
+            w = parseFloat(w.replace('%', ''));
+            h = parseFloat(h.replace('%', ''));
+            ratio = h / w;
+        } else if (w.indexOf('%') === -1 && h.indexOf('%') === -1) { // pixels mode
+            w = parseInt(w, 10);
+            h = parseInt(h, 10);
+            ratio = h / w;
+        }
+
+        if (ratio !== false) {
+            let ratioValue = (ratio * 100) + '%';
+            wrappers[i].setAttribute('style', '--embed-aspect-ratio:' + ratioValue);
+        }
+    }
 })();

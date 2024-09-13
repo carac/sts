@@ -3,7 +3,7 @@
     <title>Stretch Therapy Sessions</title>
     <link href="https://carac.github.io/sts/feed.xml" rel="self" />
     <link href="https://carac.github.io/sts" />
-    <updated>2024-09-03T19:35:58+10:00</updated>
+    <updated>2024-09-13T13:02:53+10:00</updated>
     <author>
         <name>Craig Rackemann</name>
     </author>
@@ -55,7 +55,7 @@
             <![CDATA[
                     <p><img src="https://carac.github.io/sts/media/posts/8/20180317-1332-15065-bw-light.jpg" class="type:primaryImage" alt="" /></p>
                 
-<p> </p>
+<p>&lt;iframe src="https://app.acuityscheduling.com/schedule.php?owner=15651504&amp;ref=embedded_csp" title="Schedule Appointment" width="100%" height="800" frameBorder="0"&gt;&lt;/iframe&gt;&lt;script src="https://embed.acuityscheduling.com/js/embed.js" type="text/javascript"&gt;&lt;/script&gt;</p>
             ]]>
         </content>
     </entry>
