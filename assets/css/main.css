@@ -128,35 +128,41 @@ h6 {
   text-transform: var(--headings-transform);
 }
 
+/*
 h1,
 .h1 {
   font-size: clamp(1.6758293408rem, 1.6758293408rem + 2.4606601204 * (100vw - 20rem) / 100, 4.1364894613rem);
   margin: 0;
 }
+*/
+
+h1,
+.h1 {
+  font-size: clamp(1.2945382732rem, 1.2945382732rem + 0.2765517333 * (100vw - 20rem) / 100, 1.5710900065rem);
+}
 
 h2,
 .h2 {
-  font-size: clamp(1.2945382732rem, 1.2945382732rem + 0.2765517333 * (100vw - 20rem) / 100, 1.5710900065rem);
+  font-size: clamp(1.1377777785rem, 1.1377777785rem + 0.2430630467 * (100vw - 20rem) / 100, 1.3808408252rem);
 }
 
 h3,
 .h3 {
-  font-size: clamp(1.1377777785rem, 1.1377777785rem + 0.2430630467 * (100vw - 20rem) / 100, 1.3808408252rem);
+  font-size: clamp(1.066666667rem, 1.066666667rem + 0.1469629638 * (100vw - 20rem) / 100, 1.2136296308rem);
 }
 
 h4,
 .h4 {
-  font-size: clamp(1.066666667rem, 1.066666667rem + 0.1469629638 * (100vw - 20rem) / 100, 1.2136296308rem);
-}
-
-h5,
-.h5 {
   font-size: clamp(1rem, 1rem + 0.066666667 * (100vw - 20rem) / 100, 1.066666667rem);
 }
 
+h5, 
+.h5 {
+    font-size: clamp(1rem, 1rem + 0 * (100vw - 20rem) / 100, 1rem);
+}
 h6,
 .h6 {
-  font-size: clamp(1rem, 1rem + 0 * (100vw - 20rem) / 100, 1rem);
+  font-size: clamp(0.75rem, 0.75rem + 0 * (100vw - 20rem) / 100, 1rem);
 }
 
 h2 + *,
@@ -174,7 +180,8 @@ strong {
 
 blockquote {
   font-family: var(--heading-font);
-  font-size: clamp(1.1377777785rem, 1.1377777785rem + 0.3351191022 * (100vw - 20rem) / 100, 1.4728968807rem);
+  font-style: italic;
+  font-size: clamp(1rem, 1rem + 0 * (100vw - 20rem) / 100, 1rem);
   padding: 0 15%;
 }
 blockquote cite {
@@ -265,8 +272,10 @@ table td {
 figcaption {
   clear: both;
   color: var(--gray-2);
+  font-style: italic;
   font-size: 0.8239746086rem;
-  margin: 0.8rem 0 0;
+  /*margin: 0.8rem 0 0;*/
+  margin: -2.5em 0 4em 0;
   text-align: center;
 }
 
@@ -349,6 +358,9 @@ button {
   -webkit-transition: all 0.24s ease-out;
   transition: all 0.24s ease-out;
   width: 100%;
+}
+.btn:first-letter {
+    text-transform: uppercase;
 }
 @media all and (min-width: 20em) {
   .btn, [type=button],
@@ -1565,6 +1577,16 @@ textarea {
   -webkit-text-decoration-skip: ink;
           text-decoration-skip: ink;
 }
+.content__entry li a, p a {
+  text-decoration: none;
+  border-bottom: 1px dotted;
+}
+
+.content__entry li a:hover, p a:hover {
+  text-decoration: none !important;
+  border-bottom: 1px solid;
+}
+
 .content__footer {
   margin-top: 3.2rem;
 }
@@ -2150,7 +2172,8 @@ textarea {
 .footer__nav ul li {
   display: inline-block;
   font-size: 0.6789341556rem;
-  font-variation-settings: "wght" var(--font-weight-bold);
+  /*font-variation-settings: "wght" var(--font-weight-bold);*/
+  font-variation-settings: "wght" var(--font-weight-normal);
   letter-spacing: calc(var(--headings-letter-spacing) * 2);
   margin: 0 1.0666666667rem;
   padding: 0;
