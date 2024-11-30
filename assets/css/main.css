@@ -1581,12 +1581,10 @@ textarea {
   text-decoration: none;
   border-bottom: 1px dotted;
 }
-
 .content__entry li a:hover, p a:hover {
   text-decoration: none !important;
   border-bottom: 1px solid;
 }
-
 .content__footer {
   margin-top: 3.2rem;
 }
@@ -2041,43 +2039,47 @@ textarea {
 }
 
 .facebook:hover .icon {
-  fill: #0866FF;
+  fill: var(--color);
 }
 
 .twitter:hover .icon {
-  fill: #000000;
+  fill: var(--color);
 }
 
 .instagram:hover .icon {
-  fill: #000000;
+  fill: var(--color);
 }
 
 .vimeo:hover .icon {
-  fill: #1ab7ea;
+  fill: var(--color);
 }
 
 .pinterest:hover .icon {
-  fill: #bd081c;
+  fill: var(--color);
 }
 
 .youtube:hover .icon {
-  fill: #cd201f;
+  fill: var(--color);
 }
 
 .linkedin:hover .icon {
-  fill: #007bb6;
+  fill: var(--color);
 }
 
 .buffer:hover .icon {
-  fill: #333333;
+  fill: var(--color);
 }
 
 .mix:hover .icon {
-  fill: #fd8235;
+  fill: var(--color);
 }
 
 .whatsapp:hover .icon {
-  fill: #25D366;
+  fill: var(--color);
+}
+
+.li:hover {
+	stroke: var(--color);
 }
 
 .pagination {
