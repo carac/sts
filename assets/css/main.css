@@ -128,42 +128,38 @@ h6 {
   text-transform: var(--headings-transform);
 }
 
-/*
 h1,
 .h1 {
-  font-size: clamp(1.6758293408rem, 1.6758293408rem + 2.4606601204 * (100vw - 20rem) / 100, 4.1364894613rem);
+/*  font-size: clamp(1.6758293408rem, 1.6758293408rem + 2.4606601204 * (100vw - 20rem) / 100, 4.1364894613rem);*/
+    font-size: clamp(1.5rem, 1.5rem + 2 * (100vw - 20rem) / 100, 4rem);
   margin: 0;
-}
-*/
-
-h1,
-.h1 {
-  font-size: clamp(1.2945382732rem, 1.2945382732rem + 0.2765517333 * (100vw - 20rem) / 100, 1.5710900065rem);
 }
 
 h2,
 .h2 {
-  font-size: clamp(1.1377777785rem, 1.1377777785rem + 0.2430630467 * (100vw - 20rem) / 100, 1.3808408252rem);
+  font-size: clamp(1.2945382732rem, 1.2945382732rem + 0.2765517333 * (100vw - 20rem) / 100, 1.5710900065rem);
 }
 
 h3,
 .h3 {
-  font-size: clamp(1.066666667rem, 1.066666667rem + 0.1469629638 * (100vw - 20rem) / 100, 1.2136296308rem);
+  font-size: clamp(1.1377777785rem, 1.1377777785rem + 0.2430630467 * (100vw - 20rem) / 100, 1.3808408252rem);
 }
 
 h4,
 .h4 {
+  font-size: clamp(1.066666667rem, 1.066666667rem + 0.1469629638 * (100vw - 20rem) / 100, 1.2136296308rem);
+}
+
+h5,
+.h5 {
   font-size: clamp(1rem, 1rem + 0.066666667 * (100vw - 20rem) / 100, 1.066666667rem);
 }
 
-h5, 
-.h5 {
-    font-size: clamp(1rem, 1rem + 0 * (100vw - 20rem) / 100, 1rem);
-}
 h6,
 .h6 {
-  font-size: clamp(0.75rem, 0.75rem + 0 * (100vw - 20rem) / 100, 1rem);
+  font-size: clamp(1rem, 1rem + 0 * (100vw - 20rem) / 100, 1rem);
 }
+
 
 h2 + *,
 h3 + *,
