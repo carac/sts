@@ -2369,3 +2369,8 @@ textarea {
 .pswp--light .pswp__button--arrow--right:before {
   background-image: url(../svg/gallery-icons-dark.svg);
 }
+
+html {
+    visibility: visible;
+    opacity: 1;
+}
