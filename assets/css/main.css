@@ -2374,3 +2374,7 @@ html {
     visibility: visible;
     opacity: 1;
 }
+
+.readMoreAdditionalText { 
+    text-transform: capitalize;
+}
