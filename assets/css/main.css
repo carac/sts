@@ -2370,11 +2370,5 @@ textarea {
   background-image: url(../svg/gallery-icons-dark.svg);
 }
 
-html {
-    visibility: visible;
-    opacity: 1;
-}
-
-.readMoreAdditionalText { 
-    text-transform: capitalize;
-}
+/* Fix for FOUC on Safari */
+body { display: block; }
